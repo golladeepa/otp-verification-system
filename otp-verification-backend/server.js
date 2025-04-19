@@ -101,7 +101,7 @@ app.post('/login', (req, res) => {
       if (err) return res.status(500).json({ message: 'Failed to update OTP' });
 
       const mailOptions = {
-        from: 'boyasaikiran37@gmail.com',
+        from: 'd14747106@gmail.com',
         to: email,
         subject: 'Your OTP Code',
         html: `<p>Your OTP code is: <strong>${otp}</strong></p>`

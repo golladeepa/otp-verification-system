@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './VerifyOTP.css';
 
@@ -9,7 +8,6 @@ const VerifyOTP = () => {
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
   const location = useLocation();
-  const navigate = useNavigate();
   const email = location.state?.email || '';
 
   const handleSubmit = async (e) => {
@@ -22,7 +20,9 @@ const VerifyOTP = () => {
       localStorage.setItem('token', response.data.token);
       setMessage(response.data.message);
       setMessageType('success');
-      navigate('/dashboard');
+
+      // ✅ Redirect to the university website
+      window.location.href = 'https://www.kishkindauniversity.edu.in';
     } catch (error) {
       setMessage(error.response?.data?.message || 'OTP verification failed');
       setMessageType('error');
@@ -45,7 +45,7 @@ const VerifyOTP = () => {
               onChange={(e) => setOtp(e.target.value)}
               required
               placeholder="Enter otp code"
-              maxLength="8"
+              maxLength="6"
             />
           </div>
           
@@ -71,4 +71,4 @@ const VerifyOTP = () => {
   );
 };
 
-export default VerifyOTP;
+export default VerifyOTP;     
